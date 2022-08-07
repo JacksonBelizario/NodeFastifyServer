@@ -10,7 +10,8 @@
   "author": "Jackson Belizário <jacksonluizzb@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "fastify": "^4.4.0"
+    "fastify": "^4.4.0",
+    "simple-body-validator": "^1.2.2"
   },
   "devDependencies": {
     "node-dev": "^7.4.3"

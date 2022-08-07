@@ -1,3 +1,4 @@
+const Validator = require('simple-body-validator');
 
 const users = []
 let id = 0
@@ -7,6 +8,20 @@ function index(req, res) {
 }
 
 function store({ body }, res) {
+    const validator = Validator.make(body, {
+        name: 'required|string|min:3',
+        email: 'required|email'
+    });
+
+    if (!validator.validate()) {
+        return res
+            .code(422)
+            .send({
+                response: 'ERROR',
+                errors: validator.errors().all()
+            })
+    }
+    
     const user = {
         id: ++id,
         name: body.name,
@@ -19,6 +34,20 @@ function store({ body }, res) {
 }
 
 function update({ body, params }, res) {
+    const validator = Validator.make(body, {
+        name: 'required|string|min:3',
+        email: 'required|email',
+    });
+
+    if (!validator.validate()) {
+        return res
+            .code(422)
+            .send({
+                response: 'ERROR',
+                errors: validator.errors().all()
+            })
+    }
+    
     const index = users.findIndex(u => u.id == params.id)
 
     if (index === -1) {
