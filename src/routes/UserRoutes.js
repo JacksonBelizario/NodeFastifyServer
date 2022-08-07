@@ -8,8 +8,8 @@ const UserController = require('../controllers/UserController.js')
 async function routes(fastify, options) {
     fastify.get('/', UserController.index)
     fastify.post('/', UserController.store)
-    fastify.put('/', UserController.update)
-    fastify.delete('/', UserController.destroy)
+    fastify.put('/:id', UserController.update)
+    fastify.delete('/:id', UserController.destroy)
 }
 
 module.exports = routes
